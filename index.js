@@ -55,39 +55,15 @@ app.get("/", (req, res) =>
     })
 );
 //////////////////////// notify//////////////////////////////////
-app.get("/loop", (req, res) => {
 
- axios.get(`http://192.168.43.128:3000/get_position_token/12`,).then(function(response) {
-        // console.log(response)
-        const temp =response.data;
-        // res.send(temp.token_staff);
-        res.send(temp);
-    })
-    
 
-    // const response = await axios.get(`http://192.168.43.128:3000/get_position_token/12`, {
-    //     headers: {
-    //         Authorization: `Bearer ${_token}`
-    //     },
-    //     httpsAgent: new https.Agent({
-    //         rejectUnauthorized: false
-    //     })
-    // });
-    //     res.send(temp);
-
-})
-
-app.get('/fcm_node/:room/:temp/:token_staff', (request, res) => {
-// app.get('/fcm_node', (request, res) => {
+app.get('/fcm_node/:room/:temp/:token_staff', (request, res) => { 
 const room = request.params.room;
     const temp = request.params.temp;
     const token_staff = request.params.token_staff;
     var FCM = require('fcm-node');
     var serverKey = 'AAAAuLTWD0E:APA91bGtpH7jbHhb6RGvR02I1GcpZaaSUhccY0Eg_KuwQT66oDWcUikTD7ojClDKDZE3LY3v2UwwnAm0TdhT9GXQgTlMMNrK3-6dMZbM0hBLNc9HduOeYG5Q1O-VFiaF6tn54Z99kt1v';
     var fcm = new FCM(serverKey);
-// var token_staff='eGcz3Uz-Tq29C0cJjDLt_P:APA91bHA4CDcZA6RtIr6iBeXgnDB7PJiQiIDP12JFqBFVy2rSr6xzGFEXzqqKPo2QvK221PvNMWJoAfyqPRq7Cdj3sPf7VvhZGXKbsqOCju79DFnpDTOalkzlOVOverGRG77UDy5RrRU'
-// var room ="ห้องไอที"  ;
-// var temp = "30";
 var message = {
 	to:token_staff,
       
@@ -116,101 +92,8 @@ var message = {
     });
 
 });
-// app.get('/fcm_node', (request, res) => {
-//     // app.get('/fcm_node', (request, res) => {
-//     // const room = request.params.room;
-//     //     const temp = request.params.temp;
-//     //     const token_staff = request.params.token_staff;
-//         var FCM = require('fcm-node');
-//         var serverKey = 'AAAAuLTWD0E:APA91bGtpH7jbHhb6RGvR02I1GcpZaaSUhccY0Eg_KuwQT66oDWcUikTD7ojClDKDZE3LY3v2UwwnAm0TdhT9GXQgTlMMNrK3-6dMZbM0hBLNc9HduOeYG5Q1O-VFiaF6tn54Z99kt1v';
-//         var fcm = new FCM(serverKey);
-//     var token_staff='fpdaLYcqR_Cg7fdqpTrxlL:APA91bGBpU6-8XNEv_BnK2oFD43KRks8pKzpdOU-ErSR1NF3QHIarsLrc_3OzOd-VRP9gL4StQhFJe1jN2e6RQWXww5cJmdZ__MklYbNEDd_NEUL-XiRYjUxRu31syXqI_QKlJskJTvU'
-//     var room ="ห้องไอที"  ;
-//     var temp = "30";
-//     var message = {
-//         to:token_staff,
-          
-//         notification: {
-//                 title: 'แจ้งเตือนอุณหภูมิ',
-//                 body: `${room} อุณหภูมิ${temp}`,
-//             },
-    
-//             data: { //you can send only notification or only data(or include both)
-//                 title: 'อุณหภูมิเกินที่กำหนด',
-//                 body: '{"name" : "okg ooggle ogrlrl","product_id" : "123","final_price" : "0.00035"}'
-//             }
-    
-//         };
-    
-//         fcm.send(message, function(err, response) {
-//             if (err) {
-//                 console.log("Something has gone wrong!"+err);
-//                 console.log("Respponse:! "+response);
-//             } else {
-//                 // showToast("Successfully sent with response");
-//                 console.log("Successfully sent with response: ", response);
-    
-//             }
-    
-//         });
-    
-//     });
-// app.get('/fcm_node', (request, res) => {
-//     // const id_staff = request.params.id_staff;
-//     // const token_staff = request.params.token_staff;
-//     var FCM = require('fcm-node');
-//     var serverKey = 'AAAAuLTWD0E:APA91bGtpH7jbHhb6RGvR02I1GcpZaaSUhccY0Eg_KuwQT66oDWcUikTD7ojClDKDZE3LY3v2UwwnAm0TdhT9GXQgTlMMNrK3-6dMZbM0hBLNc9HduOeYG5Q1O-VFiaF6tn54Z99kt1v';
-//     var fcm = new FCM(serverKey);
 
-//     var message = {
-// 	to:'eGcz3Uz-Tq29C0cJjDLt_P:APA91bHA4CDcZA6RtIr6iBeXgnDB7PJiQiIDP12JFqBFVy2rSr6xzGFEXzqqKPo2QvK221PvNMWJoAfyqPRq7Cdj3sPf7VvhZGXKbsqOCju79DFnpDTOalkzlOVOverGRG77UDy5RrRU',
-      
-//     notification: {
-//             title: 'แจ้งเตือนอุณหภูมิ2222',
-//             body: 'ห้อง'+title,
-//         },
-
-//         data: { //you can send only notification or only data(or include both)
-//             title: 'อุณหภูมิเกินที่กำหนด',
-//             body: '{"name" : "okg ooggle ogrlrl","product_id" : "123","final_price" : "0.00035"}'
-//         }
-
-//     };
-
-//     fcm.send(message, function(err, response) {
-//         if (err) {
-//             console.log("Something has gone wrong!"+err);
-// 			console.log("Respponse:! "+response);
-//         } else {
-//             // showToast("Successfully sent with response");
-//             console.log("Successfully sent with response: ", response);
-
-//         }
-
-//     });
-
-// });
-
-// db.query(`SELECT tb_temp.* FROM tb_temp JOIN room WHERE tb_temp.sensor_id='${sensor_id}'and tb_temp.room_id='${room_id}' and tb_temp.temp_temperature>='${temp}' and temp_datetime>= '${datetime}'AND room.id_position ='${id_position}' AND room.sensor_id =tb_temp.sensor_id;
-// `,
-
-app.get('/get_position_token/:id_position', (request, res) => {
-    const id_position = request.params.id_position;
-    db.query(`SELECT token_staff FROM staff WHERE id_position ='${id_position}';`, (err, result) => {
-         var a =`'${result}'`;
-        if (result != '') {
-            res.send(
-                result,
-            );
-        //  console.log(result);
-        } else {
-            res.send('No');
-        }
-    });
-});
-
-
-app.put("/updeta_token_staff/:id_staff/:token_staff", (request, response, next) => {
+app.put("/updeta_token_staff/:id_staff/:token_staff", (request, response, next) => { // updeta_token_user
     const id_staff = request.params.id_staff;
     const token_staff = request.params.token_staff;
     let errors = false;
@@ -235,7 +118,7 @@ app.put("/updeta_token_staff/:id_staff/:token_staff", (request, response, next) 
 })
 
 
-app.post('/set_tb_temp_notify_peek/:room_id/:sensor_id/:temp_temperature/:temp_humidity/:date_peek', (request, response) => {
+app.post('/set_tb_temp_notify_peek/:room_id/:sensor_id/:temp_temperature/:temp_humidity/:date_peek', (request, response) => { //add_temp_peek
     let room_id = request.params.room_id;
     let sensor_id = request.params.sensor_id;
     let temp_temperature= request.params.temp_temperature;
@@ -258,18 +141,7 @@ app.post('/set_tb_temp_notify_peek/:room_id/:sensor_id/:temp_temperature/:temp_h
         }
     });
 });
-// app.delete('/delete_tb_temp_notify/:notitfy_id', (request, res) => {
-//     let notitfy_id = request.params.notitfy_id;
-//     db.query(`"DELETE FROM notify WHERE notify.notitfy_id = ${notitfy_id}"`, (err, result) => {
-
-//         if (result != '') {
-//             res.send('yes_delete_setnotify');
-//         } else {
-//             res.send('No');
-//         }
-//     });
-// });
-app.delete("/delete_tb_temp_notify/:id", (req, res) => {
+app.delete("/delete_tb_temp_notify/:id", (req, res) => { //delete_temp_notify
     const id = req.params.id;
     db.query("DELETE FROM notify WHERE notify.notitfy_id = ?", id, (err, result) => {
         if (err) {
@@ -281,7 +153,7 @@ app.delete("/delete_tb_temp_notify/:id", (req, res) => {
 });
 
 
-app.post('/set_tb_temp_notify', (request, response) => {
+app.post('/set_tb_temp_notify', (request, response) => {//กำหนดอุณหภูมิ
     let room_id = request.body.room_id;
     let sensor_id	 = request.body.sensor_id;
     let prescribe_temp = request.body.prescribe_temp;
@@ -303,17 +175,7 @@ app.post('/set_tb_temp_notify', (request, response) => {
         }
     });
 });
-app.get('/get_tb_temp_notify', (request, res) => {
 
-    db.query(`SELECT * FROM tb_temp WHERE room_id = 1 AND sensor_id = 1 AND temp_temperature >= 20 AND temp_datetime >= '2022-03-09';`, (err, result) => {
-
-        if (result != '') {
-            res.send(result);
-        } else {
-            res.send('No');
-        }
-    });
-});
 
 app.get('/get_room/:id', (req, res) => {
     const id = req.params.id
@@ -327,7 +189,7 @@ app.get('/get_room/:id', (req, res) => {
     });
 });
 
-app.get('/get_notify', (request, res) => {
+app.get('/get_notify', (request, res) => {//get_notify
 
     db.query(`SELECT * FROM notify`, (err, result) => {
 
@@ -339,7 +201,6 @@ app.get('/get_notify', (request, res) => {
     });
 });
 
-// SELECT tb_temp.* FROM `tb_temp`JOIN room WHERE tb_temp.sensor_id=2 and tb_temp.room_id=2 and tb_temp.temp_temperature>=25 and temp_datetime>= 2021-12-13 AND room.id_position =12 AND room.sensor_id =tb_temp.sensor_id;
 app.get('/get_tb_temp_notify/:room_id/:sensor_id/:temp/:datetime/:id_position', (request, response) => {
     const room_id = request.params.room_id;
     const sensor_id = request.params.sensor_id;
@@ -376,27 +237,6 @@ app.get('/get_tb_temp_notify_position/:id', (request, res) => {
         }
     });
 });
-// app.get('/get_tb_temp_notify/:room_id/:sensor_id/:temp/:datetime', (request, response) => {
-//     const room_id = request.params.room_id;
-//     const sensor_id = request.params.sensor_id;
-//     const temp = request.params.temp;
-//     const datetime = request.params.datetime;
-//     db.query(`SELECT * FROM tb_temp WHERE room_id = '${room_id}' AND sensor_id = '${sensor_id}' AND temp_temperature >='${temp}' 
-//     AND temp_datetime >= '${datetime}' ;`, (err, result) => {
-
-//         if (result != '') {
-//             response.send({
-//                 ok: true,
-//                 tb_temp: result[0],
-//             });
-//             // response.send(rs[0]);
-//         }
-//         else {
-//             response.send({ tb_temp: null });
-//             //  response.send("No");
-//         }
-//     });
-// });
 
 
 
@@ -411,6 +251,7 @@ app.get('/get_teast/:id', async (req, res) => {
     }
 
 })
+///////////////////////////
 
 app.get('/get_temp_all/:id', async (req, res) => {
     const id = req.params.id;
@@ -434,7 +275,7 @@ app.get('/get_temp_all/:id', async (req, res) => {
 
 
 
-app.get('/get_temp_table/:id', async (req, res) => {
+app.get('/get_temp_table/:id', async (req, res) => { 
     const id = req.params.id;
     const dateNow = moment().format('YYYY-MM-DD');
     try {
@@ -460,7 +301,7 @@ app.get('/get_temp_table/:id', async (req, res) => {
 
 
 
-app.get('/tb_temp_latest/:id/:id_room', (request, res) => {
+app.get('/tb_temp_latest/:id/:id_room', (request, res) => { //get_latest_temp
     const id = request.params.id;
     const id_room = request.params.id_room;
     db.query(`SELECT * FROM tb_temp WHERE sensor_id ='${id}' AND room_id = '${id_room}' ORDER BY temp_datetime DESC LIMIT 1;`, (err, result) => {
@@ -473,7 +314,7 @@ app.get('/tb_temp_latest/:id/:id_room', (request, res) => {
 });
 
 
-app.get('/temp_table/:id/:id_room', (request, res) => {
+app.get('/temp_table/:id/:id_room', (request, res) => { //get_table
     const id = request.params.id;
     const id_room = request.params.id_room;
     db.query(`SELECT * FROM tb_temp WHERE sensor_id ='${id}' AND room_id = '${id_room}'ORDER BY temp_datetime DESC LIMIT 30;`, (err, result) => {
@@ -485,7 +326,7 @@ app.get('/temp_table/:id/:id_room', (request, res) => {
     });
 });
 
-app.get('/temp_chart/:id/:id_room', (request, res) => {
+app.get('/temp_chart/:id/:id_room', (request, res) => { ///get_chart
     const id = request.params.id;
     const id_room = request.params.id_room;
     db.query(`SELECT * FROM tb_temp WHERE sensor_id ='${id}' AND room_id = '${id_room}' ORDER BY temp_datetime DESC LIMIT 10;`, (err, result) => {
@@ -497,7 +338,7 @@ app.get('/temp_chart/:id/:id_room', (request, res) => {
     });
 });
 
-
+ 
 app.get('/get_tb_temp/:id/:id_room', (request, res) => {
     const id = request.params.id;
     const id_room = request.params.id_room;
@@ -510,45 +351,6 @@ app.get('/get_tb_temp/:id/:id_room', (request, res) => {
     });
 });
 
-
-app.get('/get_tb_temp/:id', (request, res) => {
-    const id = request.params.id;
-
-    db.query(`SELECT * FROM tb_temp WHERE room_id = '${id}'ORDER BY temp_datetime DESC LIMIT 2;`, (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send(result);
-        }
-    });
-});
-app.get('/get_tb_temp', (req, res) => {
-    db.query("SELECT * FROM `tb_temp` ORDER BY `temp_id` DESC LIMIT 1", (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send(result);
-        }
-    });
-});
-app.get('/get_tb_temp_table', (req, res) => {
-    db.query("SELECT * FROM `tb_temp` ORDER BY `temp_id` DESC LIMIT 30", (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send(result);
-        }
-    });
-});
-app.get('/get_tb_temp_chat', (req, res) => {
-    db.query("SELECT * FROM `tb_temp` ORDER BY `temp_id` DESC LIMIT 100", (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send(result);
-        }
-    });
-});
 
 app.post('/tb_temp/:id/', (request, res) => {
     const id = request.params.id;
@@ -639,6 +441,16 @@ app.get('/position_room/', (request, res) => {
         }
     });
 });
+app.get('/position_name/:id', (request, res) => {
+    const id = request.params.id;
+    db.query(`SELECT * FROM staff_position WHERE id_position = ${id} `, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+        }
+    });
+});
 app.get('/position_room/:id', (request, res) => {
     const id = request.params.id;
     db.query("SELECT * FROM `room` WHERE id_position = ?", id, (err, result) => {
@@ -649,6 +461,7 @@ app.get('/position_room/:id', (request, res) => {
         }
     });
 });
+//////////////////////////////////// CRUD_Room/////////////////////////////////
 app.get('/apistaff_room', (request, res) => {
     db.query(`SELECT * from room `, (err, result) => {
         if (err) {
@@ -671,7 +484,7 @@ app.get('/apiroom_id/:id', (request, res) => {
     });
 
 });
-app.post('/addroom', (request, response, next) => {
+app.post('/addroom', (request, response, next) => { // add_room
     let room_name = request.body.room_name;
     let image_room = request.body.image_room;
     let sensor_id	 = request.body.sensor_id	;
@@ -701,7 +514,7 @@ app.post('/addroom', (request, response, next) => {
     }
 })
 
-app.post("/check_room_name", async (request, response) => {
+app.post("/check_room_name", async (request, response) => { 
     var room_name = request.body.room_name;
     try {
         // console.log(data);
@@ -800,9 +613,9 @@ app.get('/Show_drop_room', (request, res) => {
         }
     });
 });
+//////////////////////////////////// CRUD_User////////////////////////////////
 
-//////////////////////////////////// CRUD_Room/////////////////////////////////
-app.post("/login", async (request, response) => {
+app.post("/login", async (request, response) => { //login_User
     var username = request.body.username;
     var password = request.body.password;
     try {
@@ -832,7 +645,7 @@ app.post("/login", async (request, response) => {
         response.send({ ok: false, rows: error });
     }
 })
-app.post("/login2", async (request, response) => {
+app.post("/login2", async (request, response) => { //login_admin
     var username = request.body.username;
     var password = request.body.password;
     try {
@@ -846,22 +659,22 @@ app.post("/login2", async (request, response) => {
         );
         if (rs[0].length == 1) {
             console.log(rs[0], token);
-            // response.send({
-            //     ok: true,
-            //     access_lavel: rs[0],
-            //     token: token,
-            //     message: "admin",
+            response.send({
+                ok: true,
+                access_lavel: rs[0],
+                token: token,
+                message: "admin",
 
-            // });
-            response.send(rs[0]);
+            });
+            // response.send(rs[0]);
         } else {
-            response.send(null);
+            response.send({ token: null });
         }
     } catch (error) {
         response.send({ ok: false, rows: error });
     }
 })
-app.post("/check_username", async (request, response) => {
+app.post("/check_username", async (request, response) => { //check_Username
     var username = request.body.username;
     try {
         // console.log(data);
@@ -883,7 +696,7 @@ app.post("/check_username", async (request, response) => {
 
 
 
-app.post('/adduser', (request, response, next) => {
+app.post('/adduser', (request, response, next) => { /// add_User
     let first_name = request.body.first_name;
     let last_name = request.body.last_name;
     let username = request.body.username;
@@ -925,7 +738,7 @@ app.post('/adduser', (request, response, next) => {
     }
 })
 
-app.delete("/delete/:id", (req, res) => {
+app.delete("/delete/:id", (req, res) => {  // delete_User
     const id = req.params.id;
     db.query("DELETE FROM staff WHERE id_staff = ?", id, (err, result) => {
         if (err) {
@@ -938,7 +751,7 @@ app.delete("/delete/:id", (req, res) => {
 
 
 
-app.put("/updeta_user/:id", (request, response, next) => {
+app.put("/updeta_user/:id", (request, response, next) => { // updeta_User
     const id = request.params.id;
     let first_name = request.body.first_name;
     let last_name = request.body.last_name;
@@ -1179,12 +992,12 @@ app.post("/check_sensor", async (request, response) => {
 
 app.put("/updeta_sensor/:id", (request, response) => {
     const id = request.params.id;
-    let name_position = request.body.name_position;
+    let sensor_name = request.body.sensor_name;
     let errors = false;
 
     if (!errors) {
         // insert query
-        db.query(`UPDATE senson SET sensor_name = '${name_position}' WHERE senson.sensor_id = ${id}`
+        db.query(`UPDATE senson SET sensor_name = '${sensor_name}' WHERE senson.sensor_id = ${id}`
             , id, (err, result) => {
                 if (err) {
                     response.send({
@@ -1310,7 +1123,7 @@ app.put("/updeta_admin/:id", (request, response, next) => {
 })
 
 
-////////////////////////////////////////////// CRUD User///////////////////////////////////////////
+
 
 
 

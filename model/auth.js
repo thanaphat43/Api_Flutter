@@ -24,7 +24,7 @@ module.exports = {
 
   login2(dbHIS, username, password) {
     // const sql = `SELECT * from staff  WHERE username = '${username}' AND password = '${password}' `;
-    const sql = `SELECT * from staff_admin WHERE username = '${username}'  AND password = ('${password}') `;
+    const sql = `SELECT * from staff_admin WHERE username = '${username}'  AND password = MD5('${password}') `;
 
     return dbHIS.raw(sql)
   },
